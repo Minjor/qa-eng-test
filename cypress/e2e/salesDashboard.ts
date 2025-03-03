@@ -25,16 +25,30 @@ Then("I should see the following Sales Widgets:", (dataTable: DataTable) => {
 });
 
 Then("the page design matches the Figma design for all Widgets:", (dataTable: DataTable) => {
+  let mismatchedPixels = 0;
   const widgets = dataTable.rows();
-  // Iterate through widgets and compare snapshots
-  widgets.forEach(([title]) => {
-    salesDashboardPage.getWidgetByName(title).compareSnapshot(title);
+
+  // Compare each widget to Figma design
+  cy.wrap(null).then(() => {
+    widgets.forEach(([title]) => {
+      salesDashboardPage.getWidgetByName(title).compareSnapshot(title).then(comparisonResults => {
+        mismatchedPixels += comparisonResults?.mismatchedPixels || 0;
+      });
+    });
+  });
+
+  // Fail if match is not pixel-perfect
+  cy.then(() => {
+    console.log(mismatchedPixels);
+    if (mismatchedPixels > 0) {
+      throw new Error(`There are ${mismatchedPixels} mismatched pixels in widgets.`);
+    }
   });
 });
 
 Then("the page design matches the Figma design for the sidebar", () => {
   sidebar.getDashboardMenu().click();
-  sidebar.getSidebar().compareSnapshot('Sidebar');
+  sidebar.getSidebar().compareSnapshot('Sidebar', { failSilently: false })
 });
 
 Given("I am using a mobile device", () => {
@@ -43,12 +57,12 @@ Given("I am using a mobile device", () => {
 
 When("I click a sales category", () => {
   salesDashboardPage.getSalesByCategory().within(() => {
-    salesDashboardPage.getSaleCategory('Apparel').click();
+    salesDashboardPage.getSaleCategory('Sports').click();
   })
 });
 
 Then("I should see the sales category details", () => {
   salesDashboardPage.getSalesByCategory().within(() => {
-    cy.contains('text', 'Apparel').should('exist')
+    cy.contains('text', 'Sports').should('exist')
   })
 });
