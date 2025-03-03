@@ -1,4 +1,6 @@
 Feature: Sales Dashboard
+
+  @dashboards @desktop
   Scenario: Visiting Vristo Sales Dashboard
     When I visit Vristo Sales Dashboard
     Then I should see the Sales Dashboard header details
@@ -16,6 +18,7 @@ Feature: Sales Dashboard
     | Recent Orders          | 
     | Top Selling Product    |
 
+  @snapshot @desktop
   Scenario: Figma design matches web UI
     When I visit Vristo Sales Dashboard
     Then the page design matches the Figma design for all Widgets:
@@ -32,6 +35,7 @@ Feature: Sales Dashboard
     | Top Selling Product    |
     And the page design matches the Figma design for the sidebar
 
+  @dashboards @mobile
   Scenario: Visiting Vristo Sales Dashboard on mobile device
     Given I am using a mobile device
     When I visit Vristo Sales Dashboard
@@ -50,6 +54,7 @@ Feature: Sales Dashboard
     | Recent Orders          | 
     | Top Selling Product    |
 
+  @widgets @mobile
   Scenario: Sales By Category Widget display details on mobile device
     Given I am using a mobile device
     When I visit Vristo Sales Dashboard

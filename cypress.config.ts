@@ -10,7 +10,11 @@ export default defineConfig({
     async setupNodeEvents(on, config) {
       // implement node event listeners here
       await configureVisualRegression(on);
-      await addCucumberPreprocessorPlugin(on, config);
+      await addCucumberPreprocessorPlugin(on, config, {
+        onAfterStep({ attach }) {
+          // To do: attach diff snapshot images to failed steps with @figma tag
+        }
+      });
       on(
         "file:preprocessor",
         createBundler({

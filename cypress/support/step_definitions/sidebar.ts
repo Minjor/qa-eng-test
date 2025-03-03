@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { salesDashboardPage } from "../support/pages/salesDashboard";
-import { sidebar } from "../support/pages/sidebar";
+import { salesDashboardPage } from "../pages/salesDashboard";
+import { sidebar } from "../pages/sidebar";
 
 Given("I am not on the Sales Dashboard page", () => {
   // Could be any page other than Sales Dashboard

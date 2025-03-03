@@ -1,6 +1,6 @@
 import { Given, When, Then, DataTable } from "@badeball/cypress-cucumber-preprocessor";
-import { salesDashboardPage } from "../support/pages/salesDashboard";
-import { sidebar } from "../support/pages/sidebar";
+import { salesDashboardPage } from "../pages/salesDashboard";
+import { sidebar } from "../pages/sidebar";
 
 When("I visit Vristo Sales Dashboard", () => {
   salesDashboardPage.visit();
@@ -25,6 +25,11 @@ Then("I should see the following Sales Widgets:", (dataTable: DataTable) => {
 });
 
 Then("the page design matches the Figma design for all Widgets:", (dataTable: DataTable) => {
+  // Disable scrolling to prevent visual artifacts
+  cy.document().then((doc) => {
+    doc.body.style.overflow = "hidden";
+  });
+
   let mismatchedPixels = 0;
   const widgets = dataTable.rows();
 
