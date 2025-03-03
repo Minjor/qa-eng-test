@@ -1,64 +1,69 @@
+import { salesDashboardPage } from "../support/pages/salesDashboard"
+
 describe('Sales Dashboard', () => {
-  const assertSalesDashboard = () => {
+  const verifySalesDashboardWidgets = () => {
     cy.title().should('eq', 'Sales Admin | VRISTO - Multipurpose Tailwind Dashboard Template')
-    cy.get('[data-cy=content] [href="/"]').should('contain', 'Dashboard')
-    cy.get('[data-cy=content] ul').should('contain', 'Sales')
-    cy.get('[data-cy=revenue-chart]').should('contain', 'Revenue')
-    cy.get('[data-cy=sales-by-category]').should('contain', 'Sales By Category')
-    cy.get('[data-cy=daily-sales]').should('contain', 'Daily Sales')
-    cy.get('[data-cy=summary]').should('contain', 'Summary')
-    cy.get('[data-cy=total-orders]').should('contain', 'Total Orders')
-    cy.get('[data-cy=recent-activities]').should('contain', 'Recent Activities')
-    cy.get('[data-cy=transactions]').should('contain', 'Transactions')
-    cy.get('[data-cy=wallet-balance]').should('contain', 'Wallet Balance')
-    cy.get('[data-cy=recent-orders]').should('contain', 'Recent Orders')
-    cy.get('[data-cy=top-selling-product]').should('contain', 'Top Selling Product')
+    salesDashboardPage.getFirstLink().should('contain', 'Dashboard')
+    salesDashboardPage.getDashboardType().should('contain', 'Sales')
+    salesDashboardPage.getRevenueChart().should('contain', 'Revenue')
+    salesDashboardPage.getSalesByCategory().should('contain', 'Sales By Category')
+    salesDashboardPage.getDailySales().should('contain', 'Daily Sales')
+    salesDashboardPage.getSummary().should('contain', 'Summary')
+    salesDashboardPage.getTotalOrders().should('contain', 'Total Orders')
+    salesDashboardPage.getRecentActivities().should('contain', 'Recent Activities')
+    salesDashboardPage.getTransactions().should('contain', 'Transactions')
+    salesDashboardPage.getWalletBalance().should('contain', 'Wallet Balance')
+    salesDashboardPage.getRecentOrders().should('contain', 'Recent Orders')
+    salesDashboardPage.getTopSellingProduct().should('contain', 'Top Selling Product')
   }
 
   // There is a Sales Dashboard
   it('should render the Sales Dashboard', () => {
-    cy.visit('/')
-    cy.get('[data-cy="screen-loader"]').should('not.exist')
-    assertSalesDashboard()
+    salesDashboardPage.visit()
+    salesDashboardPage.getScreenLoader().should('not.exist')
+    verifySalesDashboardWidgets()
   })
 
   // The design matches the provided Figma design exactly (pixel-perfect) on desktops
   it('should match the Figma design on desktop viewport', () => {
-    cy.visit('/')
-    cy.get('[data-cy="screen-loader"]').should('not.exist')
+    salesDashboardPage.visit()
+    salesDashboardPage.getScreenLoader().should('not.exist')
 
     // Check sidebar for visual regressions
     cy.get('[data-cy=sidebar] [data-cy="dashboard"]').click()
     cy.get('[data-cy=sidebar]').compareSnapshot('Sidebar')
 
-    // Check widgets for visual regressions
-    cy.get('[data-cy=revenue-chart]').compareSnapshot('Revenue')
-    cy.get('[data-cy=sales-by-category]').compareSnapshot('Sales by Category')
-    cy.get('[data-cy=daily-sales]').compareSnapshot('Daily Sales')
-    cy.get('[data-cy=summary]').compareSnapshot('Summary')
-    cy.get('[data-cy=total-orders]').compareSnapshot('Total Orders')
-    cy.get('[data-cy=recent-activities]').compareSnapshot('Recent Activities')
-    cy.get('[data-cy=transactions]').compareSnapshot('Transactions')
-    cy.get('[data-cy=wallet-balance]').compareSnapshot('Wallet Balance')
-    cy.get('[data-cy=recent-orders]').compareSnapshot('Recent Orders')
-    cy.get('[data-cy=top-selling-product]').compareSnapshot('Top Selling Product')
+    // Check invididual widgets for visual regressions
+    salesDashboardPage.getRevenueChart().compareSnapshot('Revenue');
+    salesDashboardPage.getSalesByCategory().compareSnapshot('Sales By Category');
+    salesDashboardPage.getDailySales().compareSnapshot('Daily Sales');
+    salesDashboardPage.getSummary().compareSnapshot('Summary');
+    salesDashboardPage.getTotalOrders().compareSnapshot('Total Orders');
+    salesDashboardPage.getRecentActivities().compareSnapshot('Recent Activities');
+    salesDashboardPage.getTransactions().compareSnapshot('Transactions');
+    salesDashboardPage.getWalletBalance().compareSnapshot('Wallet Balance');
+    salesDashboardPage.getRecentOrders().compareSnapshot('Recent Orders');
+    salesDashboardPage.getTopSellingProduct().compareSnapshot('Top Selling Product');
+
+    // Check for failures and throw error
+
   })
 
   // The design looks good on mobile devices
   it('should render the Sales Dashboard on mobile viewport', () => {
     cy.viewport('iphone-xr')
-    cy.visit('/')
-    cy.get('[data-cy=screen-loader]').should('not.exist')
-    assertSalesDashboard()
+    salesDashboardPage.visit()
+    salesDashboardPage.getScreenLoader().should('not.exist')
+    verifySalesDashboardWidgets()
   })
 
   // All features are usable on mobile devices (Sales by Category)
-  describe('Sales by Category', () => {
+  describe('Sales by Category Widget', () => {
     it('should display details when clicked on mobile devices', () => {
       cy.viewport('iphone-xr')
-      cy.visit('/')
-      cy.get('[data-cy="screen-loader"]').should('not.exist')
-      cy.get('[data-cy=sales-by-category]').within(() => {
+      salesDashboardPage.visit()
+      salesDashboardPage.getScreenLoader().should('not.exist')
+      salesDashboardPage.getSalesByCategory().within(() => {
         cy.get('svg [seriesName=Apparel]').click()
         cy.contains('text', 'Apparel').should('exist')
       })

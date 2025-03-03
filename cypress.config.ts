@@ -1,11 +1,23 @@
 import { defineConfig } from "cypress";
+import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
 import { configureVisualRegression } from'cypress-visual-regression';
+import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
+const { createEsbuildPlugin } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
 export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
+    specPattern: "**/*.feature",
+    async setupNodeEvents(on, config) {
       // implement node event listeners here
-      configureVisualRegression(on);
+      await configureVisualRegression(on);
+      await addCucumberPreprocessorPlugin(on, config);
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [createEsbuildPlugin(config)],
+        })
+      );
+      return config;
     },
     baseUrl: 'http://localhost:3000',
     viewportWidth: 1920,
