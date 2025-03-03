@@ -36,3 +36,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Cypress Tests
+
+This Cypress implementation is built using Cucumber Preprocessor
+
+### Setup and Execution: 
+
+1. Install [Node.js](https://nodejs.org/en/download/) 18.20.7 and [Git](https://git-scm.com/downloads).
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/Minjor/qa-eng-test
+   cd <repo-directory>
+3. Install dependencies
+   ```bash
+   npm install
+4. Execute all the tests with the following command:
+    ```bash
+    npm run test
+    ```
+    or open Cypress interface to run individual tests and debug instantly
+    ```bash
+    npm run test:open
+    ```
+5. An html report will be automatically generated after running all tests with `npm run test`, which can be found on `./cypress/cucumber-report.html`
