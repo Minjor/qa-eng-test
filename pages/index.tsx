@@ -423,7 +423,7 @@ const Index = () => {
 
                 <div className="pt-5">
                     <div className="mb-6 grid gap-6 xl:grid-cols-3">
-                        <div className="panel h-full xl:col-span-2">
+                        <div className="panel h-full xl:col-span-2" data-cy="revenue-chart">
                             <div className="mb-5 flex items-center justify-between dark:text-white-light">
                                 <h5 className="text-lg font-semibold">Revenue</h5>
                                 <div className="dropdown">
@@ -462,7 +462,7 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className="panel h-full">
+                        <div className="panel h-full" data-cy="sales-by-category">
                             <div className="mb-5 flex items-center">
                                 <h5 className="text-lg font-semibold dark:text-white-light">Sales By Category</h5>
                             </div>
@@ -481,7 +481,7 @@ const Index = () => {
                     </div>
 
                     <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                        <div className="panel h-full sm:col-span-2 xl:col-span-1">
+                        <div className="panel h-full sm:col-span-2 xl:col-span-1" data-cy="daily-sales">
                             <div className="mb-5 flex items-center">
                                 <h5 className="text-lg font-semibold dark:text-white-light">
                                     Daily Sales
@@ -505,7 +505,7 @@ const Index = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="panel h-full">
+                        <div className="panel h-full" data-cy="summary">
                             <div className="mb-5 flex items-center justify-between dark:text-white-light">
                                 <h5 className="text-lg font-semibold">Summary</h5>
                                 <div className="dropdown">
@@ -579,7 +579,7 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className="panel h-full p-0">
+                        <div className="panel h-full p-0" data-cy="total-orders">
                             <div className="absolute flex w-full items-center justify-between p-5">
                                 <div className="relative">
                                     <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-success-light text-success dark:bg-success dark:text-success-light">
@@ -604,7 +604,7 @@ const Index = () => {
                         </div>
                     </div>
                     <div className="mb-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                        <div className="panel h-full pb-0 sm:col-span-2 xl:col-span-1">
+                        <div className="panel h-full pb-0 sm:col-span-2 xl:col-span-1" data-cy="recent-activities">
                             <h5 className="mb-5 text-lg font-semibold dark:text-white-light">Recent Activities</h5>
                             <PerfectScrollbar className="relative mb-4 h-[290px] ltr:-mr-3 ltr:pr-3 rtl:-ml-3 rtl:pl-3" options={{suppressScrollX: true}}>
                                 <div className="cursor-pointer text-sm">
@@ -743,7 +743,7 @@ const Index = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="panel h-full">
+                        <div className="panel h-full" data-cy="transactions">
                             <div className="mb-5 flex items-center justify-between dark:text-white-light">
                                 <h5 className="text-lg font-semibold">Transactions</h5>
                                 <div className="dropdown">
@@ -829,7 +829,7 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className="panel h-full overflow-hidden border-0 p-0">
+                        <div className="panel h-full overflow-hidden border-0 p-0" data-cy="wallet-balance">
                             <div className="min-h-[190px] bg-gradient-to-r from-[#4361ee] to-[#160f6b] p-6">
                                 <div className="mb-6 flex items-center justify-between">
                                     <div className="flex items-center rounded-full bg-black/50 p-1 font-semibold text-white ltr:pr-3 rtl:pl-3">
@@ -896,7 +896,7 @@ const Index = () => {
                     </div>
 
                     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                        <div className="panel h-full w-full">
+                        <div className="panel h-full w-full" data-cy="recent-orders">
                             <div className="mb-5 flex items-center justify-between">
                                 <h5 className="text-lg font-semibold dark:text-white-light">Recent Orders</h5>
                             </div>
@@ -997,7 +997,7 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className="panel h-full w-full">
+                        <div className="panel h-full w-full" data-cy="top-selling-product">
                             <div className="mb-5 flex items-center justify-between">
                                 <h5 className="text-lg font-semibold dark:text-white-light">Top Selling Product</h5>
                             </div>
